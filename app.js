@@ -4,8 +4,8 @@ const app = express()
 var exphbs = require('express-handlebars');
 // OUR MOCK ARRAY OF PROJECTS
 let reviews = [
-    { title: "Great Review"},
-    { title: "Next Review"}
+    { title: this.title},
+    { title: this.moveTitle}
 ]
 // INDEX 
 app.get('/', (req, res) => {
@@ -18,3 +18,4 @@ app.set('view engine', 'handlebars');
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
 })
+

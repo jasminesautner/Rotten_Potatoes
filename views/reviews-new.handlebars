@@ -1,5 +1,6 @@
 <!-- views/reviews-new.handlebars -->
 
+
 <form method="POST" action="/reviews">
     <fieldset>
         <legend>New Review</legend>
@@ -17,6 +18,19 @@
         <p>
             <label for="description-text">Description</label><br>
             <input id="description-title" name="description" rows="10" />
+        </p>
+        <!-- RATING ATTRIBUTE -->
+        <p>
+            <form>
+                Select Your Stars Rating:
+                <select id="mySelect">
+                    <option>1 star</option>
+                    <option>2 stars</option>
+                    <option>3 stars</option>
+                    <option>4 stars</option>
+                    <option>5 stars</option>
+                </select>
+                </form>
         </p>
     </fieldset>
 

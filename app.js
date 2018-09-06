@@ -19,10 +19,10 @@ const Review = mongoose.model('Review', {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // OUR MOCK ARRAY OF PROJECTS
-let reviews = [
-    { title: this.title},
-    { title: this.moveTitle}
-]
+// let reviews = [
+//     { title: this.title},
+//     { title: this.moveTitle}
+// ]
 
 // INDEX 
 app.get('/', (req, res) => {
@@ -70,10 +70,18 @@ app.get('/reviews/:id/edit', function (req, res) {
 app.put('/reviews/:id', (req, res) => {
     Review.findByIdAndUpdate(req.params.id, req.body)
     .then(review => {
-        res.redirect('/reviews/${review._id}')
-    })
-    .catch(err => {
+        res.redirect(`/reviews/${review._id}`);
+    }).catch(err => {
         console.log(err.message)
+    })
+})
+// DELETE
+app.delete('/reviews/:id', function (req, res) {
+    console.log("DELETE review")
+    Review.findByIdAndRemove(req.params.id).then((review) => {
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
     })
 })
 

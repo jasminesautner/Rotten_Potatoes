@@ -2,14 +2,26 @@
 const express = require('express')
 const app = express()
 var exphbs = require('express-handlebars');
-// OUR MOCK ARRAY OF PROJECTS
-let reviews = [
-    { title: this.title},
-    { title: this.moveTitle}
-]
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/rotten_potatoes', { useNewUrlParser: true });
+const Review = mongoose.model('Review', {
+    title: String
+})
+
+// // OUR MOCK ARRAY OF PROJECTS
+// var reviews = [
+//     { title: this.title},
+//     { title: this.moveTitle}
+// ]
+
 // INDEX 
 app.get('/', (req, res) => {
-    res.render('reviews-index', { reviews: reviews });
+    Review.find().then((reviews) => {
+        res.render('reviews-index', { reviews: reviews });
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 })
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

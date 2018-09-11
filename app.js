@@ -1,10 +1,11 @@
 // app.js
 const port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
-
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
+const reviews = require('./controllers/reviews.js');
+
+var exphbs = require('express-handlebars');
 
 const express = require('express')
 // import express from 'express'
@@ -14,6 +15,14 @@ const methodOverride = require('method-override')
 const Review = require('./models/reviews')
 
 const app = express()
+
+try {
+    mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
+}
+catch (err) {
+    throw err;
+}
+
 // The following line must appear AFTER const app = expres() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 // routes(app);
@@ -26,9 +35,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     movieTitle: String
 // });
 
-const reviews = require('./controllers/reviews.js');
-
-var exphbs = require('express-handlebars');
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -42,9 +48,9 @@ app.use(methodOverride('_method'))
 //     { title: this.moveTitle}
 // ]
 
-reviews(app)
+reviews(app);
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}!`)
-})
+    console.log(`App listening on port ${port}!`);
+});
 

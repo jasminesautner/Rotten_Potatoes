@@ -1,43 +1,14 @@
 <!-- views/reviews-new.handlebars -->
-
-
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
 <form method="POST" action="/reviews">
     {{> reviews-form}}
-    {{!-- <fieldset>
-        <legend>New Review</legend>
-        <!--TITLE-->
-        <p>
-            <label for="title">Title</label><br>
-            <input type="text" name="title" />
-        </p>
-        <!-- MOVIE TITLE -->
-        <p>
-            <label for="review-title">Title</label><br>
-            <input id="movie-title" type="text" name="movieTitle" />
-        </p>
-        <!-- DESCRIPTION -->
-        <p>
-            <label for="description-text">Description</label><br>
-            <input id="description-title" name="description" rows="10" />
-        </p>
-        <!-- RATING ATTRIBUTE -->
-        <p>
-            <form>
-                Select Your Stars Rating:
-                <select id="mySelect">
-                    <option>1 star</option>
-                    <option>2 stars</option>
-                    <option>3 stars</option>
-                    <option>4 stars</option>
-                    <option>5 stars</option>
-                </select>
-                </form>
-        </p>
-    </fieldset> --}}
 
     <!-- BUTTON -->
-    <p>
-        <button type="submit">Save Review</button>
-    </p>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save Review</button>
+        <button class="btn btn-primary" href="/">Cancel</button>
+    </div>
 </form>
-
+</div>
+</div>

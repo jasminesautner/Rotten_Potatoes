@@ -16,13 +16,6 @@ const Review = require('./models/reviews')
 
 const app = express()
 
-try {
-    mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
-}
-catch (err) {
-    throw err;
-}
-
 // The following line must appear AFTER const app = expres() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 // routes(app);
@@ -52,5 +45,8 @@ reviews(app);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}!`);
+    var connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
+    console.log(`[CONNECTED] MongoDB ${connectionString}`);
+    mongoose.connect();
 });
 

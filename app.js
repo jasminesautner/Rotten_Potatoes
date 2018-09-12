@@ -16,7 +16,7 @@ const Review = require('./models/reviews')
 
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:password1@ds251622.mlab.com:51622/rotten-potatoes-db');
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:password1@ds251622.mlab.com:51622/rotten-potatoes-db');
 
 // The following line must appear AFTER const app = expres() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,7 +46,10 @@ app.use(methodOverride('_method'))
 reviews(app);
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}!`);
+    // console.log(`App listening on port ${port}!`);
+    var connectionString = mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:password1@ds251622.mlab.com:51622/rotten-potatoes-db');
+    console.log(`[CONNECTED] MONGODB ${connectionString}`);
+    `mongoose.connect()`;
     // var connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
     // console.log(`[CONNECTED] MongoDB ${connectionString}`);
     // mongoose.connect();

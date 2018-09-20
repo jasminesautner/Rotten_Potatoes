@@ -8,13 +8,21 @@
 <p>{{review.description}}</p>
 <p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
 <!-- DELETE BUTTON -->
-<form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
+<p><form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
     <button class="btn btn-primary" type="submit">Delete</button>
-</form>
+</form></p>
 
 <hr>
+    <!-- COMMENT FORM -->
+    {{> comment-form}}
 
-        <!-- COMMENT FORM -->
-        {{> comment-form}}
+    <hr>
+
+    <!-- SHOW COMMENTS -->
+    {{#each comments}}
+        {{> comment}}
+    {{/each}}
+
     </div>  
 </div>
+

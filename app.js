@@ -1,9 +1,21 @@
 // app.js
+// import comment from 'comments';
 const port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
+// LINK COMMENTS 
+// import comments from 'comments';
+// import { cpus } from 'os';
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
+
+const Comment = require('./models/comment');
+
+const Review = require('./models/review');
+
+const comments = require("./controllers/comments.js");
 const reviews = require('./controllers/reviews.js');
+
+// const reviews = require("./controllers/reviews.js");
 
 var exphbs = require('express-handlebars');
 
@@ -11,8 +23,6 @@ const express = require('express')
 // import express from 'express'
 const methodOverride = require('method-override')
 // comment
-
-const Review = require('./models/reviews')
 
 const app = express()
 
@@ -30,12 +40,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     movieTitle: String
 // });
 
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(methodOverride('_method'))
-
+reviews(app);
+comments(app);
 
 // OUR MOCK ARRAY OF PROJECTS
 // var reviews = [
@@ -43,12 +53,10 @@ app.use(methodOverride('_method'))
 //     { title: this.moveTitle}
 // ]
 
-reviews(app);
-
 app.listen(port, () => {
     // console.log(`App listening on port ${port}!`);
     var connectionString = mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:password1@ds251622.mlab.com:51622/rotten-potatoes-db');
-    console.log(`[CONNECTED] MONGODB ${connectionString}`);
+        console.log(`[CONNECTED] MONGODB ${connectionString}`);
     `mongoose.connect()`;
     // var connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
     // console.log(`[CONNECTED] MongoDB ${connectionString}`);

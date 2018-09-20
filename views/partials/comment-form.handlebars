@@ -1,4 +1,5 @@
-<form>
+<form action="/reviews/comments" method="post">
+    <input type="hidden" value="{{review._id}}" name="reviewId">
     <fieldset>
         <legend>Add a comment</legend>
             <!-- TITLE -->
@@ -22,6 +23,9 @@
     </fieldset>
             <!-- BUTTON -->
             <div class="form-group">
+                <p>
                 <button class="btn btn-primary" type="submit">Save Comment</button>
+                <button class="btn btn-primary" href="/">Cancel</button>
+                </p>
             </div>
 </form>

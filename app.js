@@ -11,9 +11,10 @@ const bodyParser = require('body-parser');
 const Comment = require('./models/comment');
 const Review = require('./models/review');
 
+
 const comments = require("./controllers/comments.js");
 const reviews = require('./controllers/reviews.js');
-
+const movies = require('./controllers/movies.js');
 // const reviews = require("./controllers/reviews.js");
 
 var exphbs = require('express-handlebars');
@@ -45,6 +46,7 @@ app.set('view engine', 'handlebars');
 app.use(methodOverride('_method'))
 comments(app);
 reviews(app);
+movies(app);
 
 // OUR MOCK ARRAY OF PROJECTS
 // var reviews = [

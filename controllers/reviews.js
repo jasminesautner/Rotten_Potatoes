@@ -4,14 +4,14 @@ const Comment = require('../models/comment')
 
 module.exports = function(app) {
     // INDEX
-    app.get('/', (req, res) => {
-        Review.find()
-        .then(reviews => {
-            res.render('reviews-index', { reviews: reviews });
-        }).catch(err => {
-            console.log(err);
-        });
-    });
+    // app.get('/', (req, res) => {
+    //     Review.find()
+    //     .then(reviews => {
+    //         res.render('reviews-index', { reviews: reviews });
+    //     }).catch(err => {
+    //         console.log(err);
+    //     });
+    // });
 
     // // NEW
     app.get('/reviews/new', (req, res) => {
@@ -71,16 +71,5 @@ module.exports = function(app) {
             console.log(err.message);
         });
     });
-
-    // DELETE COMMENT
-    app.delete('/reviews/comments/:id', function (req, res) {
-        console.log("/comments/:id")
-        console.log("DELETE comment")
-        Comment.findByIdAndRemove(req.params.id).then((comment) => {
-            res.redirect(`/reviews/${comment.reviewId}`);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-    })
 }
 

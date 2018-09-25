@@ -1,5 +1,6 @@
 //review.js
 const Review = require('../models/review')
+const Comment = require('../models/comment')
 
 module.exports = function(app) {
     // INDEX
@@ -16,6 +17,7 @@ module.exports = function(app) {
     app.get('/reviews/new', (req, res) => {
             console.log(req.body);
             res.render('reviews-new', {});
+            console.log("review new")
         });
 
     // CREATE
@@ -35,7 +37,7 @@ module.exports = function(app) {
             // fetch its comments
             Comment.find({ reviewId: req.params.id }).then((comments) => {
                 res.render('reviews-show', { review: review, comments: comments })
-        })
+            })
         }).catch((err) => {
             console.log(err.message)
         });
@@ -46,7 +48,9 @@ module.exports = function(app) {
         Review.findById(req.params.id, function(err, review) {
             res.render('reviews-edit', { review: review });
         });
+        console.log("in edit")
     });
+
 
     // UPDATE
     app.put('/reviews/:id', (req, res) => {

@@ -9,7 +9,6 @@ var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const Comment = require('./models/comment');
-
 const Review = require('./models/review');
 
 const comments = require("./controllers/comments.js");
@@ -44,8 +43,8 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(methodOverride('_method'))
-reviews(app);
 comments(app);
+reviews(app);
 
 // OUR MOCK ARRAY OF PROJECTS
 // var reviews = [
